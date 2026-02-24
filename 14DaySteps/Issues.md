@@ -24,8 +24,8 @@ if __name__ == "__main__":
     - I got this when I ran docker 'aws-devops-end-to-end % docker run -p 5001:5001 flask-devops-app Unable to find image 'flask-devops-app:latest' locally docker: Error response from daemon: pull access denied for flask-devops-app, repository does not exist or may require 'docker login' Run 'docker run --help' for more information'.
       
 - Solution
-  ```
-  docker images
+```
+docker images
 ```
 
 This should list the images. If nothing is listed then the image was never built. The issue was, the fullstop at the end of the code below was omitted.
