@@ -50,5 +50,57 @@ docker build -t flask-devops-app .
     - This means EC2 instance is linux/amd64 (assigned at setup) but the Docker image you pushed was built for a different architecture
 Docker image is built on a Mac with Apple Silicon (M1/M2/M3) which builds images as
     - linux/arm64
-      but EC2 (t2.micro) runs on
+but EC2 (t2.micro) runs on:
     - linux/amd64
+- Solution
+- Logged back into the project folder on CLI
+- Built docker image with code below:
+```
+docker buildx build --platform linux/amd64 -t flask-devops-app .
+```
+
+- Issue 2
+    - After rebuilding image, i tried to push to ecr repository using code below:
+```
+docker push 859525218899.dkr.ecr.us-east-1.amazonaws.com/flask-devops-app:latest
+```
+
+I got an error because I was not connected to ECR as connection lasts only 12hrs
+- Solution
+    - I relogged into ecr with code below
+```
+  aws ecr get-login-password --region us-east-1 \
+| docker login --username AWS --password-stdin 859525218899.dkr.ecr.us-east-1.amazonaws.com
+```
+
+I pushed again with code below:
+```
+docker push 859525218899.dkr.ecr.us-east-1.amazonaws.com/flask-devops-app:latest
+```
+- Issue 3
+    - After all was up and running on EC2, I copied in IPV4 public ip to test on the interbet but could not see the website.
+- Solution
+    - To debug, I checked the following
+    - Confirm Security Group Allows Port 5001
+        - Go to: AWS Console → EC2 → Security Groups
+        - Select the security group attached to your instance.
+        - Under Inbound Rules, you MUST have: Custom TCP, 5001, Anywhere (0.0.0.0/0)
+    - Check Flask Is Listening on 0.0.0.0
+        - In the app.py, code must be as below:
+```
+app.run(host="0.0.0.0", port=5001)
+```
+Flask binding to localhost instead of 0.0.0.0
+    - Confirm container is running
+```
+docker ps
+```
+Expected result
+```
+0.0.0.0:5001->5001/tcp
+```
+    - Confirm you have the correct url. This was the issue at this stage, the :5001 was not included in the IPV4.
+
+
+
+
