@@ -1,13 +1,14 @@
 # DAY 2: BUILD THE FLASK APP (LOCAL ONLY)
 
-STEP 1: Create the app folder structure
-Inside your project folder (aws-devops-end-to-end):
+- STEP 1:
+    - Create the app folder structure
+    - Inside your project folder (aws-devops-end-to-end):
 
 ```
 mkdir app
 cd app
 ```
-Create these files:
+    - Create these files:
 
 ```
 touch app.py
@@ -24,9 +25,8 @@ aws-devops-end-to-end/
 │
 └── README.md
 ```
-STEP 2: Write the Flask application 
-Open app/app.py and paste this exactly:
-
+- STEP 2: Write the Flask application 
+    - Open app/app.py and paste this exactly:
 ```python
 from flask import Flask
 
@@ -41,15 +41,16 @@ if __name__ == "__main__":
 ```
 Save the file.
 
-STEP 3: Add dependencies
-Open app/requirements.txt and add:
+- STEP 3: Add dependencies
+    - Open app/requirements.txt and add:
 ```
 flask
 ```
 
-STEP 4: Create a virtual environment (optional but recommended) 
-From inside the app folder:
-```
+- STEP 4: Create a virtual environment (optional but recommended) 
+    - From inside the app folder:
+
+```python
 python3 -m venv venv
 ```
 Activate it:
@@ -62,19 +63,25 @@ Windows
 venv\Scripts\activate
 ```
 You should see (venv) in your terminal.
+
+- STEP 5: Install Flask
+    - Flask is used to build web apps, small websites and backend 
+
 ```
-STEP 5: Install Flask
-Flask is used to build web apps, small websites and backend 
 pip install -r requirements.txt
 ```
 
-STEP 6: Run the app locally 
+- STEP 6: Run the app locally
+```python
 python app.py
+```
+
 You should see something like:
+
 Running on http://127.0.0.1:5000
 
-STEP 7: Open the browser
-Go to:
+- STEP 7: Open the browser
+    - Go to:
 ```
 http://localhost:5000
 ```
@@ -82,9 +89,11 @@ http://localhost:5000
 Expected result:
 Hello from AWS DevOps Project
 
-STEP 8: Commit your work 
+- STEP 8: Commit your work 
 From the project root:
+```
 git status
 git add .
 git commit -m "Add basic Flask application"
 git push
+```
