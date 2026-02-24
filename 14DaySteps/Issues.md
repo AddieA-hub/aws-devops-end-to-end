@@ -99,7 +99,7 @@ Expected result
 ```
 0.0.0.0:5001->5001/tcp
 ```
-    - Confirm you have the correct url. This was the issue at this stage, the :5001 was not included in the IPV4.
+Confirm you have the correct url. This was the issue at this stage, the :5001 was not included in the IPV4.
 
 
 
