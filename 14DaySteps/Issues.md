@@ -43,3 +43,12 @@ docker build -t flask-devops-app .
     - When I was configuring in my CLI, i did not include the region and output format. this led to errors  
 - Solution
     - Always include region and output format
+
+# Day 5
+- Issue 1
+    - when I entered this docker pull 859525218899.dkr.ecr.us-east-1.amazonaws.com/flask-devops-app:latest - I GOT THIS 'no matching manifest for linux/amd64 in the manifest list entries'.
+    - This means EC2 instance is linux/amd64 (assigned at setup) but the Docker image you pushed was built for a different architecture
+Docker image is built on a Mac with Apple Silicon (M1/M2/M3) which builds images as
+    - linux/arm64
+      but EC2 (t2.micro) runs on
+    - linux/amd64
