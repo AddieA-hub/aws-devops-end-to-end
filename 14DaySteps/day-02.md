@@ -16,15 +16,14 @@ touch requirements.txt
 
 Your structure should now look like:
 aws-devops-end-to-end/
-,,,
+```
 │
 ├── app/
 │   ├── app.py
 │   └── requirements.txt
 │
 └── README.md
-,,,
-
+```
 STEP 2: Write the Flask application 
 Open app/app.py and paste this exactly:
 
