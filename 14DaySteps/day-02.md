@@ -10,7 +10,7 @@ cd app
 ```
     - Create these files:
 
-```
+```bash
 touch app.py
 touch requirements.txt
 ```
