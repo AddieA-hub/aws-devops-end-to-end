@@ -38,10 +38,23 @@ EXPOSE 5001
 CMD ["python", "app.py"]
 ```
 
-- STEP 3: Build the Docker image 
+- STEP 3: Build the Docker image
 From the project root:
 ```
 docker build -t flask-devops-app .
+```
+  - The code above would build a docker image that works for the architecture of the environment you are building. For example, if this is built on apple, it will not run on linux because apple is arm64 and linux is amd64.
+  - To prevent this error you have two options.
+  - option 1 is to build for the  free tier cloud environment. See code below:
+```
+docker buildx build --platform linux/amd64 -t flask-devops-app .
+```
+ - option 2 is to build for all the possible environments that you know:
+```
+docker buildx build \
+  --platform linux/amd64,linux/arm64 \
+  -t flask-devops-app \
+  --push .
 ```
 
 - STEP 4: Run the container 
