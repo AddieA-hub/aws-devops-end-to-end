@@ -97,3 +97,8 @@ git add .
 git commit -m "Add basic Flask application"
 git push
 ```
+
+- STEP 8: Stop app from running
+```
+Control + C
+```
