@@ -1,6 +1,6 @@
-Day 1
+# Day 1
 
-Install Local Tools
+# Install and Update Local Tools
 Git
 Docker
 Python 3
@@ -21,11 +21,11 @@ Click Create Repository
 
 Step 2
 Open README.md and paste this exactly:
-# AWS DevOps End-to-End Project
+AWS DevOps End-to-End Project (include a double hash to bold all headings as needed)
 
 This project demonstrates a complete DevOps workflow on AWS Free Tier.
 
-## Tech Stack
+Tech Stack 
 - Application: Python (Flask)
 - Containerization: Docker
 - Infrastructure as Code: Terraform
@@ -33,7 +33,7 @@ This project demonstrates a complete DevOps workflow on AWS Free Tier.
 - Cloud Provider: AWS
 - Monitoring: CloudWatch
 
-## Goal
+Goal
 To build, deploy, and automate a containerized application on AWS using modern DevOps practices.
 
 Step 3
