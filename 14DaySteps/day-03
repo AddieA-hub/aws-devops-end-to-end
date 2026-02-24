@@ -1,0 +1,12 @@
+# DAY 3: DOCKERIZE THE FLASK APPLICATION
+
+Docker packages your app + Python + Flask into a container. The container runs the same on your laptop, AWS, CI/CD, everywhere.
+
+- STEP 1: Make sure Docker is running (2 minutes)
+Open Docker Desktop.
+Then run:
+docker --version
+If you see a version → continue.
+STEP 2: Create a Dockerfile (10 minutes)
+From the project root (aws-devops-end-to-end):
+touch Dockerfile
