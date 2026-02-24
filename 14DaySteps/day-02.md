@@ -8,9 +8,8 @@
 mkdir app
 cd app
 ```
-    - Create these files:
-
-```bash
+Create these files:
+```
 touch app.py
 touch requirements.txt
 ```
