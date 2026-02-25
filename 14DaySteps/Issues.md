@@ -101,6 +101,28 @@ Expected result
 ```
 Confirm you have the correct url. This was the issue at this stage, the :5001 was not included in the IPV4.
 
+# Day 6
+- Issue 1
+To proceed with the task of updating the port, I ran 'docker ps' no images showed to be running.
+- Solution
+- To debug Steps were taken to have it back running
+    - Step 1: I ran docker ps -a to see all my containers
+    - Step 2: I ran the docker run script that includes the port, name and image id
+    - Step 3: I ran 'docker ps' to see it was up and running
+    - Step 4: Then followed the steps to stop, rm and re-run the updated image to correct port
+
+  # Day 7
+- Issue 1
+- When I tried to automate the docker, it did not work when the EC2 was stopped and restarted 
+- Solution
+    - Docker engine needs to be set to restart at reboot. The following codes were used to confirm and all the steps to automate restart of docker image was repeated.
+```
+sudo systemctl status docker
+sudo systemctl start docker
+sudo systemctl enable docker
+sudo systemctl is-enabled docker
+```
+    
 
 
 
