@@ -1,4 +1,4 @@
-# Day 6 Goal: Make your app accessible on:http://<EC2-Public-IP>
+# Day 6 Goal: Make your app accessible on public IP without :PORT
 
 - In production, applications:
   - Run inside containers on non-privileged ports (like 5000)
@@ -13,12 +13,18 @@ HTTP	TCP	      80	  0.0.0.0/0
 ```
 
 - In EC2
+Check status of containers
+```
+docker ps -a
+```
+Stop running docker using container ID or name
 ```
 docker stop flask-devops-app
 ```
 ```
 docker rm flask-devops-app
 ```
+Run docker image to update the port 
 ```
 docker run -d \
   -p 80:5001 \
