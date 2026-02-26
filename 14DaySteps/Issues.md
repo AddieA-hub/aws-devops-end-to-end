@@ -111,7 +111,7 @@ To proceed with the task of updating the port, I ran 'docker ps' no images showe
     - Step 3: I ran 'docker ps' to see it was up and running
     - Step 4: Then followed the steps to stop, rm and re-run the updated image to correct port
 
-  # Day 7
+# Day 7
 - Issue 1
 - When I tried to automate the docker, it did not work when the EC2 was stopped and restarted 
 - Solution
@@ -122,7 +122,23 @@ sudo systemctl start docker
 sudo systemctl enable docker
 sudo systemctl is-enabled docker
 ```
-    
+# Day 8
+- Issue 1
+- Tried to create main.tf to launch 1 server and 1 security group but failed
+- Solution
+- Correct architecture steps had to be followed from creating internet gateway, security group, subnet, ec2
+
+- Issue 2
+- Git commit did not work because I had some files on git that were not on my PC
+- Solution
+- Code below was used to merge first
+```
+git pull origin main --rebase
+```
+
+- Issue 3
+- Tried to commit terraform state files
+- Solutiom
 
 
 
