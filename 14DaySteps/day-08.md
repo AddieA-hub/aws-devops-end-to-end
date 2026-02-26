@@ -22,7 +22,7 @@ VPC (10.0.0.0/16)
 │
 └── Security Group
 ```
-Breakdowm of main.tf script
+- Breakdowm of main.tf script
 VPC
 ```
 provider "aws" {
