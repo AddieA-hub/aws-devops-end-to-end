@@ -39,7 +39,7 @@ Get the URL from GitHub by clicking the green "Code" button on your repo then co
 This will create a folder in your current directory with all the repo files inside. Then navigate into it:
 ```
 git clone https://github.com/username/repo-name.git
-``
+```
 
 Git branching
 ```
