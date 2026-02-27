@@ -46,15 +46,18 @@ Git branching
 ```
 git pull origin main
 ```
+
 Create your own branch for your changes
 ```
 git checkout -b feature/updated-terraform-config
 ```
+
 Make your changes, then stage and commit
 ```
 git add .
 git commit -m "updated terraform security group rules"
 ```
+
 Push your branch to GitHub
 ```
 git push origin feature/updated-terraform-config
