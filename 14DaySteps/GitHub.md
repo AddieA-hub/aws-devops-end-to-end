@@ -42,7 +42,23 @@ This will create a folder in your current directory with all the repo files insi
 git clone https://github.com/username/repo-name.git
 ``
 
-Git branching 
+Git branching
+```
+git pull origin main
+```
+Create your own branch for your changes
+```
+git checkout -b feature/updated-terraform-config
+```
+Make your changes, then stage and commit
+```
+git add .
+git commit -m "updated terraform security group rules"
+```
+Push your branch to GitHub
+```
+git push origin feature/updated-terraform-config
+```
 
 
 
