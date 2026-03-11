@@ -140,5 +140,19 @@ git pull origin main --rebase
 - Tried to commit terraform state files
 - Solutiom
 
+# Day 9/10
+- Issue 1
+- Tried to include user-data in terraform main.tf to automatically launch server, install docker, pull and run images. Did not work 
+- Solution
+- Correct architecture steps had to be followed from creating iam role, instance policy amd instance profile all in terraform
 
+  
+- Issue 2
+- Tried to ssh into an instance but failed
+- Solution
+- Always run the script in the sequence below
+```
+chmod 400 <keypair.pem>
+ssh -i <keypair.pem> ec2-user@<public-ip>
+```
 
