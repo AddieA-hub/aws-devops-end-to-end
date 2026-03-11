@@ -75,12 +75,53 @@ resource "aws_security_group" "flask_sg" {
   }
 }
 
+resource "aws_iam_role" "ec2_ecr_role" {
+  name = "ec2-ecr-access-role"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [{
+      Action = "sts:AssumeRole"
+      Effect = "Allow"
+      Principal = {
+        Service = "ec2.amazonaws.com"
+      }
+    }]
+  })
+}
+
+resource "aws_iam_role_policy_attachment" "ecr_policy" {
+  role       = aws_iam_role.ec2_ecr_role.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
+}
+
+resource "aws_iam_instance_profile" "ec2_profile" {
+  name = "ec2-ecr-profile"
+  role = aws_iam_role.ec2_ecr_role.name
+}
+
 resource "aws_instance" "flask" {
-  ami                    = "ami-056335ec4a8783947"  # Use correct AMI for region
+  ami                    = "ami-056335ec4a8783947"
   instance_type          = "t3.micro"
   subnet_id              = aws_subnet.public.id
   vpc_security_group_ids = [aws_security_group.flask_sg.id]
   key_name               = "flaskappkeypair"
+
+  iam_instance_profile = aws_iam_instance_profile.ec2_profile.name
+
+  user_data = <<-EOF
+              #!/bin/bash
+              yum update -y
+              yum install -y docker aws-cli
+              systemctl start docker
+              systemctl enable docker
+
+              aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 859525218899.dkr.ecr.us-east-1.amazonaws.com
+
+              docker pull 859525218899.dkr.ecr.us-east-1.amazonaws.com/flask-devops-app:latest
+
+              docker run -d -p 80:5001 --restart unless-stopped 859525218899.dkr.ecr.us-east-1.amazonaws.com/flask-devops-app:latest
+              EOF
 
   tags = {
     Name = "Flask-DevOps-Terraform"
