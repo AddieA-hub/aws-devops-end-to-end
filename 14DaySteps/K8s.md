@@ -64,3 +64,15 @@ kubectl apply -f k8s/
 kubectl get pods
 minikube service flask-service
 ```
+- Auto scaling based on CPU
+```
+kubectl autoscale deployment flask-app --min=2 --max=10 --cpu-percent=70
+```
+- Your CI/CD pipeline (GitHub Actions, Jenkins, etc.) then runs kubectl apply automatically when you push code. So scaling is treated like any other code change. 
+Kubernetes has a controller that constantly watches your pods and compares the current state to your desired state (what's in your YAML). If a pod dies:
+
+- Kubernetes detects it's gone
+- Automatically spins up a new pod to replace it
+- The new pod joins the service and starts receiving traffic
+
+- This happens within seconds, automatically, with no manual intervention. That's why replicas: 3 is safer than replicas: 1 in production — if one pod crashes, the other two keep serving traffic while Kubernetes heals the third
