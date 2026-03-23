@@ -76,3 +76,30 @@ Kubernetes has a controller that constantly watches your pods and compares the c
 - The new pod joins the service and starts receiving traffic
 
 - This happens within seconds, automatically, with no manual intervention. That's why replicas: 3 is safer than replicas: 1 in production — if one pod crashes, the other two keep serving traffic while Kubernetes heals the third
+
+Automation of local build and deploy
+```
+name: Deploy to Kubernetes
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Build and push Docker image
+        run: |
+          docker build -t yourdockerhub/flask-app:latest .
+          docker push yourdockerhub/flask-app:latest
+
+      - name: Apply Kubernetes files
+        run: |
+          kubectl apply -f k8s/deployment.yaml
+          kubectl apply -f k8s/service.yaml
+```
