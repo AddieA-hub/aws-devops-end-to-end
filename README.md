@@ -13,6 +13,7 @@ This project demonstrates a complete DevOps workflow on AWS Free Tier.
 ## Goal
 - To build, deploy, and automate a containerized application on AWS using modern DevOps practices.
 - To build, deploy, and automate a containerized application on K8s locally with Minikube.
+- All files deployed with deply.yml on git actions
 
 ```
 your-project/
