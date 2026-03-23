@@ -156,3 +156,23 @@ chmod 400 <keypair.pem>
 ssh -i <keypair.pem> ec2-user@<public-ip>
 ```
 
+# K8s
+- Issue 1
+- K8s did not run. Get pod name with and find the exact error. 
+```
+kubectl get pods
+kubectl describe pod flask-app-6d4f9b7c8-xk2pq
+```
+- I looked at the log and saw the 'imagePullbackoff error'. Update deployment file to 'imagePullPolicy: Never'
+- Solution
+- Always include imagePullPolicy: Never from the start when working with local images in minikube. Make it part of your default deployment      template
+- Issue 2
+- After 'kubectl apply -f k8s/' pod did not run
+- Solution
+- Always delete 'kubectl delete -f k8s/'
+Always build image in order
+```
+eval $(minikube docker-env)   # point to minikube's Docker
+docker build -t your-image .  # build inside minikube
+kubectl apply -f k8s/         # then deploy
+```
